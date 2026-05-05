@@ -1,10 +1,10 @@
-// Add years here as seasons are synced from OpenF1
-const AVAILABLE_YEARS = [2024, 2023];
-
 interface Props {
   year: number;
   onChange: (year: number) => void;
 }
+
+const currentYear = new Date().getFullYear();
+const YEARS = Array.from({ length: currentYear - 1950 + 1 }, (_, i) => currentYear - i);
 
 export default function YearSelector({ year, onChange }: Props) {
   return (
@@ -13,7 +13,7 @@ export default function YearSelector({ year, onChange }: Props) {
       onChange={(e) => onChange(Number(e.target.value))}
       className="border border-gray-300 rounded-lg px-3 py-1.5 text-sm bg-white"
     >
-      {AVAILABLE_YEARS.map((y) => (
+      {YEARS.map((y) => (
         <option key={y} value={y}>{y}</option>
       ))}
     </select>
